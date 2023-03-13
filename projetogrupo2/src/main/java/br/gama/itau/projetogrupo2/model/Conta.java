@@ -18,19 +18,21 @@ public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "conta")
-    private long numero_conta;
+    private long numeroConta;
     
-    @Column(length = 4)
+    
     private int agencia;
 
-    @Column(length = 1, nullable = false)
-    private int tipo_conta;
+    @Column(nullable = false)
+    private int tipoConta;
 
     private double saldo;
 
     @ManyToOne
-    @JoinColumn(name = "id_cliente")
+    @JoinColumn(name = "idCliente")
     @JsonIgnoreProperties("contas")
-    private Conta conta;
+    private Conta movimentacao; // Duvidas aqui
+
+    //Cliente Opcional
 }
     
