@@ -31,8 +31,4 @@ build/
 
 ### VS Code ###
 .vscode/
-<<<<<<< HEAD
 .pom.xml
-=======
-.pom.xml
->>>>>>> 34a0cef1f53c4585e67a4427bf6ea2b307eb1fb8
