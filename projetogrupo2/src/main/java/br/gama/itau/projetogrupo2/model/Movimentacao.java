@@ -9,30 +9,36 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Getter
 @Setter
-public class Conta {
+
+public class Movimentacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "conta")
-    private long numeroConta;
+    @Column(name = "conta", nullable = false)
+    private int numSeq;
     
     
-    private int agencia;
+    private LocalDate dataOperacao;
 
     @Column(nullable = false)
-    private int tipoConta;
+    private double valor;
 
-    private double saldo;
+    @Column(length = 255)
+    private String descricao;
 
-    @ManyToOne
-    @JoinColumn(name = "idCliente")
-    @JsonIgnoreProperties("contas")
-    private Conta movimentacao; // Duvidas aqui
+    private int tipoOperacao;
 
-    //Cliente Opcional
-}
     
+    @ManyToOne
+    @JoinColumn(name = "numeroConta")
+    @JsonIgnoreProperties("contas")
+    private Movimentacao conta;//Duvida aqui
+}
+
