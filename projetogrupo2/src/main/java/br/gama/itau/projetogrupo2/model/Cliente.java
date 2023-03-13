@@ -20,16 +20,16 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id_cliente;
+    private long idCliente;
 
     @Column(length=100)
-    private String nome_cliente;
+    private String nomeCliente;
 
     @Column(length=20, nullable = false, unique=true)
-    private String cpf_cliente;
+    private String cpfCliente;
 
     @Column(length = 20, nullable= false, unique=true)
-    private String telefone_cliente;
+    private String telefoneCliente;
 
     @OneToMany(mappedBy = "conta")
     @JsonIgnoreProperties("conta")
