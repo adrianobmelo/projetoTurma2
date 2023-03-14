@@ -16,7 +16,7 @@ import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.service.ClienteService;
 
 @RestController
-@RequestMapping("/contas")
+@RequestMapping("/clientes")
 public class ClienteController {
     
     @Autowired
@@ -47,4 +47,6 @@ public class ClienteController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteInserido);
     }
+
+   
 }
