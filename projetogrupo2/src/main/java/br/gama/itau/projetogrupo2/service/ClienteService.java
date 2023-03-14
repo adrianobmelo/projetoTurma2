@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import br.gama.itau.projetogrupo2.exception.NotFoundException;
 import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.repository.ClienteRepo;
 import lombok.RequiredArgsConstructor;
@@ -25,8 +26,7 @@ public class ClienteService {
         Optional<Cliente> clienteOptional = repo.findById(id);
 
         if (clienteOptional.isEmpty()) {
-            //throw new NotFoundException("Cliente não encontrado");
-            System.out.println("Cliente não encontrado");
+            throw new NotFoundException("Cliente não encontrado");
         }
 
         Cliente clienteEncontrado = clienteOptional.get();
