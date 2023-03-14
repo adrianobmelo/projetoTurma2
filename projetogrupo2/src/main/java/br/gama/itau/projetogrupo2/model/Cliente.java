@@ -31,8 +31,8 @@ public class Cliente {
     @Column(length = 20, nullable= false, unique=true)
     private String telefoneCliente;
 
-    @OneToMany(mappedBy = "conta")
-    @JsonIgnoreProperties("conta")
+    @OneToMany(mappedBy = "cliente")
+    @JsonIgnoreProperties("cliente")
     private List<Conta> contas;
 
 }

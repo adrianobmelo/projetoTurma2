@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import lombok.Getter;
 import lombok.Setter;
@@ -34,6 +36,9 @@ public class Conta {
     @JsonIgnoreProperties("conta")
     private List <Movimentacao> movimentacoes; 
 
-    //Cliente Opcional
+    @ManyToOne
+    @JoinColumn(name = "id_cliente")
+    @JsonIgnoreProperties("contas")
+    private Cliente cliente;
 }
     
