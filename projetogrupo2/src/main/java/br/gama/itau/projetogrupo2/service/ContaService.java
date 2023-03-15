@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import br.gama.itau.projetogrupo2.exception.NotFoundException;
-import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.model.Conta;
 import br.gama.itau.projetogrupo2.repository.ContaRepo;
 import lombok.RequiredArgsConstructor;
