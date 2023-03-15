@@ -40,5 +40,15 @@ public class ContaService {
         return contaInserida;
     }
 
+    public Conta updateConta(long id, Conta conta){
+        Optional<Conta>contaOptional = repo.findById(id);
+
+        if(contaOptional.isEmpty()) {
+            return null;
+        }
+        conta.setNumeroConta(id);
+        Conta contaAtualizada = repo.save(conta);
+        return contaAtualizada;
+    }
 }
 

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 // import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -41,15 +42,15 @@ public class ContaController {
          return ResponseEntity.status(HttpStatus.CREATED).body(contaInserida);
      }
 
-     // //alterar
-    // @PutMapping
-    // public ResponseEntity<Cliente> updateCliente(@PathVariable long id, @RequestBody Cliente cliente) {
-    //     Cliente clienteAtualizado = service.updateCliente(id, cliente);
-    //     if(clienteAtualizado == null) {
-    //         return ResponseEntity.badRequest().build();
-    //     }
-    //     return ResponseEntity.ok(clienteAtualizado);
+     //alterar
+    @PutMapping
+    public ResponseEntity<Conta> updateConta(@PathVariable long id, @RequestBody Conta conta) {
+        Conta contaAtualizada = service.updateConta(id, conta);
+        if(contaAtualizada == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(contaAtualizada);
 
 
-    // }
+    }
 }
