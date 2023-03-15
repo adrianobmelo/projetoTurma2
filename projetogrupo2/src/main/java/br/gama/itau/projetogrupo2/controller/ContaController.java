@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.gama.itau.projetogrupo2.dto.ContaDTO;
 import br.gama.itau.projetogrupo2.model.Conta;
 import br.gama.itau.projetogrupo2.service.ContaService;
 
@@ -42,7 +43,7 @@ public class ContaController {
          return ResponseEntity.status(HttpStatus.CREATED).body(contaInserida);
      }
 
-     //alterar
+     //alterar conta
     @PutMapping
     public ResponseEntity<Conta> updateConta(@PathVariable long id, @RequestBody Conta conta) {
         Conta contaAtualizada = service.updateConta(id, conta);
@@ -53,4 +54,16 @@ public class ContaController {
 
 
     }
+// Procura a conta a partir do id do cliente
+
+    @GetMapping("/id/{id}")
+    public ResponseEntity<ContaDTO> getByCliente(@PathVariable Long idCliente) {
+
+        Conta conta = service.getByCLiente(idCliente);
+
+        ContaDTO contaDTO = new ContaDTO(conta);
+        
+        return ResponseEntity.ok(contaDTO);
+    }
+
 }
