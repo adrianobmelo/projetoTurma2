@@ -9,7 +9,7 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MovimentacaoService {
-    private MovimentacaoRepo repo;
+    private final MovimentacaoRepo repo;
 
     public Movimentacao newMovimentacao(Movimentacao novaMovimentacao) {
         if(novaMovimentacao.getNumSeq() > 0) {
