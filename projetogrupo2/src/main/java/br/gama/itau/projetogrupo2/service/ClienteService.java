@@ -1,13 +1,13 @@
 package br.gama.itau.projetogrupo2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-//import br.gama.itau.projetogrupo2.exception.NotFoundException;
-
 import org.springframework.stereotype.Service;
-
+import br.gama.itau.projetogrupo2.dto.ContaDTO;
 import br.gama.itau.projetogrupo2.exception.NotFoundException;
 import br.gama.itau.projetogrupo2.model.Cliente;
+import br.gama.itau.projetogrupo2.model.Conta;
 import br.gama.itau.projetogrupo2.repository.ClienteRepo;
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +31,23 @@ public class ClienteService {
 
         Cliente clienteEncontrado = clienteOptional.get();
         return clienteEncontrado;
+    }
+
+    public List<ContaDTO> getContasById(long id) {
+        Optional<Cliente> clienteOptional = repo.findById(id);
+
+        if (clienteOptional.isEmpty()) {
+            throw new NotFoundException("Cliente não encontrado");
+        }
+
+        Cliente clienteEncontrado = clienteOptional.get();
+        List<Conta> listaContas = clienteEncontrado.getContas();
+        List<ContaDTO> listaContasDTO =new ArrayList<>();
+
+        for (Conta conta : listaContas) {
+            listaContasDTO.add(new ContaDTO(conta));
+        }
+        return listaContasDTO;
     }
 
     // add cliente
