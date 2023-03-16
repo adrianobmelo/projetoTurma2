@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.gama.itau.projetogrupo2.dto.ClienteDTO;
 import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.service.ClienteService;
 
@@ -24,7 +25,7 @@ public class ClienteController {
 
     // pegar todos
     @GetMapping
-    public ResponseEntity<List<Cliente>> getAll() {
+    public ResponseEntity<List<ClienteDTO>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
 

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+
+import br.gama.itau.projetogrupo2.dto.ClienteDTO;
 import br.gama.itau.projetogrupo2.dto.ContaDTO;
 import br.gama.itau.projetogrupo2.exception.NotFoundException;
 import br.gama.itau.projetogrupo2.model.Cliente;
@@ -17,8 +19,22 @@ public class ClienteService {
     // mostrar todos
     private final ClienteRepo repo;
 
-    public List<Cliente> getAll() {
-        return (List<Cliente>) repo.findAll();
+    //public List<Cliente> getAll() {
+        //return (List<Cliente>) repo.findAll();
+    //}
+
+    public List<ClienteDTO> getAll() {
+        // o método finAll retorna um Iterable, e nós precisamos de um List
+        // por isso fazemos um Casting, transformando para o tipo que precisamos
+        List<Cliente> lista = (List<Cliente>) repo.findAll();
+
+        List<ClienteDTO> listaDTO = new ArrayList<>();
+
+        for (Cliente cliente : lista) {
+            listaDTO.add(new ClienteDTO(cliente));
+        }
+
+        return listaDTO;
     }
 
     // mostrar por id
@@ -58,4 +74,6 @@ public class ClienteService {
         Cliente clienteInserido = repo.save(novoCliente);
         return clienteInserido;
     }
+
+    
 }
