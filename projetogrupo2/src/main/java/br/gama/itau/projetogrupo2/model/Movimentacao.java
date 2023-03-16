@@ -1,5 +1,6 @@
 package br.gama.itau.projetogrupo2.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -36,7 +37,7 @@ public class Movimentacao {
     private int tipoOperacao;
 
     
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @JoinColumn(name = "numero_conta")
     @JsonIgnoreProperties("movimentacoes")
     private Conta conta;
