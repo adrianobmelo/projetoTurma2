@@ -23,7 +23,7 @@ import br.gama.itau.projetogrupo2.util.GenerateCliente;
 
 @ExtendWith(MockitoExtension.class)
 public class ClienteServiceTest {
-
+        // testes
     // esse obj receberá um Mock da sua dependência
     // esse é o obj da classe a ser testada
     @InjectMocks
@@ -63,6 +63,8 @@ public class ClienteServiceTest {
                 .isEqualTo(GenerateCliente.clienteValido().getCpfCliente())
                 .isNotEmpty();
     }
+
+
 
     @Test
     public void newCliente_returnNewCliente_whenClienteValido() {
