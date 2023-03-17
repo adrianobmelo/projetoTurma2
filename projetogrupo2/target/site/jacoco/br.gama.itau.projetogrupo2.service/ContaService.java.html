@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContaService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">projetogrupo2</a> &gt; <a href="index.source.html" class="el_package">br.gama.itau.projetogrupo2.service</a> &gt; <span class="el_source">ContaService.java</span></div><h1>ContaService.java</h1><pre class="source lang-java linenums">package br.gama.itau.projetogrupo2.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
+import br.gama.itau.projetogrupo2.exception.NotFoundException;
+import br.gama.itau.projetogrupo2.model.Conta;
+import br.gama.itau.projetogrupo2.repository.ContaRepo;
+import lombok.RequiredArgsConstructor;
+
+@Service
+<span class="fc" id="L14">@RequiredArgsConstructor</span>
+public class ContaService {
+    private final ContaRepo repo;
+
+    public List&lt;Conta&gt; getAll() {
+<span class="nc" id="L19">        return (List&lt;Conta&gt;) repo.findAll();</span>
+    }
+
+     // mostrar por conta
+     public Conta getNumeroConta(long conta) {
+<span class="nc" id="L24">        Optional&lt;Conta&gt; contaOptional = repo.findById(conta);</span>
+
+<span class="nc bnc" id="L26" title="All 2 branches missed.">        if (contaOptional.isEmpty()) {</span>
+<span class="nc" id="L27">            throw new NotFoundException(&quot;Conta não encontrada&quot;);</span>
+        }
+
+<span class="nc" id="L30">        Conta contaEncontrada = contaOptional.get();</span>
+<span class="nc" id="L31">        return contaEncontrada;</span>
+    }
+
+    // add conta
+    public Conta newConta(Conta novaConta) {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">        if(novaConta.getNumeroConta() &gt; 0) {</span>
+<span class="nc" id="L37">            return null;</span>
+        }
+<span class="nc" id="L39">        Conta contaInserida = repo.save(novaConta);</span>
+<span class="nc" id="L40">        return contaInserida;</span>
+    }
+
+    public Conta updateConta(long id, Conta conta){
+<span class="nc" id="L44">        Optional&lt;Conta&gt;contaOptional = repo.findById(id);</span>
+
+<span class="nc bnc" id="L46" title="All 2 branches missed.">        if(contaOptional.isEmpty()) {</span>
+<span class="nc" id="L47">            return null;</span>
+        }
+<span class="nc" id="L49">        conta.setNumeroConta(id);</span>
+<span class="nc" id="L50">        Conta contaAtualizada = repo.save(conta);</span>
+<span class="nc" id="L51">        return contaAtualizada;</span>
+    }
+    
+    public Conta getByCLiente(long id) {
+<span class="nc" id="L55">        return repo.findByCliente(id);</span>
+    }
+
+    
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
