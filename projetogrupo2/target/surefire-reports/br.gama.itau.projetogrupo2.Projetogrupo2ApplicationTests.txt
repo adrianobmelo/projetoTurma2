@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: br.gama.itau.projetogrupo2.Projetogrupo2ApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.182 s - in br.gama.itau.projetogrupo2.Projetogrupo2ApplicationTests
