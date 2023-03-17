@@ -16,7 +16,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.gama.itau.projetogrupo2.dto.ClienteDTO;
-import br.gama.itau.projetogrupo2.dto.ContaDTO;
 import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.model.Conta;
 import br.gama.itau.projetogrupo2.repository.ClienteRepo;
