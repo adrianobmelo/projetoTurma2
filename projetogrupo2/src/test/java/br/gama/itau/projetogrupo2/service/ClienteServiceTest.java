@@ -2,6 +2,10 @@ package br.gama.itau.projetogrupo2.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
@@ -11,6 +15,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
+import br.gama.itau.projetogrupo2.dto.ClienteDTO;
 import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.repository.ClienteRepo;
 import br.gama.itau.projetogrupo2.util.GenerateCliente;
@@ -27,6 +32,37 @@ public class ClienteServiceTest {
     // É a dependência a ser injetada
     @Mock
     private ClienteRepo repo;
+
+    @Test
+    public void getAll_returnListCliente_whenClienteExist() {
+        List<Cliente> clientes = new ArrayList<>();
+        clientes.add(GenerateCliente.clienteId1());
+
+        BDDMockito.when(repo.findAll()).thenReturn(clientes);
+
+        List<ClienteDTO> listaRecuperada = service.getAll();
+
+        assertThat(listaRecuperada).isNotNull();
+        assertThat(listaRecuperada).isNotEmpty();
+        // testa o Id do primeiro elemento (paciente) da lista
+        assertThat(listaRecuperada.get(0).getIdCliente()).isEqualTo(GenerateCliente.clienteId1().getIdCliente());
+    }
+
+    @Test
+    public void getById_returnCliente_whenIdExist() {
+        BDDMockito.when(repo.findById(ArgumentMatchers.any(Long.class)))
+                .thenReturn(Optional.of(GenerateCliente.clienteValido()));
+
+        Cliente clienteEncontrado = service.getById(1L);
+
+        assertThat(clienteEncontrado)
+                .isNotNull();
+        assertThat(clienteEncontrado.getIdCliente())
+                .isGreaterThan(0);
+        assertThat(clienteEncontrado.getCpfCliente())
+                .isEqualTo(GenerateCliente.clienteValido().getCpfCliente())
+                .isNotEmpty();
+    }
 
     @Test
     public void newCliente_returnNewCliente_whenClienteValido() {
@@ -48,4 +84,5 @@ public class ClienteServiceTest {
         verify(repo, Mockito.times(1)).save(novoCliente);
     }
 
+   
 }
