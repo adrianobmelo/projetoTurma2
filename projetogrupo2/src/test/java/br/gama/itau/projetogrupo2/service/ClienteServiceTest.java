@@ -16,9 +16,12 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import br.gama.itau.projetogrupo2.dto.ClienteDTO;
+import br.gama.itau.projetogrupo2.dto.ContaDTO;
 import br.gama.itau.projetogrupo2.model.Cliente;
+import br.gama.itau.projetogrupo2.model.Conta;
 import br.gama.itau.projetogrupo2.repository.ClienteRepo;
 import br.gama.itau.projetogrupo2.util.GenerateCliente;
+import br.gama.itau.projetogrupo2.util.GenerateConta;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -63,6 +66,36 @@ public class ClienteServiceTest {
                 .isEqualTo(GenerateCliente.clienteValido().getCpfCliente())
                 .isNotEmpty();
     }
+
+//     @Test
+//     public void getAll_returnListContas_whenContaExist() {
+//         List<Conta> contas = new ArrayList<>();
+//         contas.add(GenerateConta.contaId1());
+
+//         BDDMockito.when(repo.findAll()).thenReturn(contas);
+
+//         List<ContaDTO> listaRecuperada = service.getAll();
+
+//         assertThat(listaRecuperada).isNotNull();
+//         assertThat(listaRecuperada).isNotEmpty();
+//         assertThat(listaRecuperada.get(0).getNumeroConta()).isEqualTo(GenerateConta.contaId1().getNumeroConta());
+//     }
+
+//     @Test
+//     public void getContasById_returnContaByIdCliente_whenIdExist() {
+//         BDDMockito.when(repo.findById(ArgumentMatchers.any(Long.class)))
+//                 .thenReturn(Optional.of(GenerateConta.contaValida()));
+
+//         List<ContaDTO> contaEncontrada = service.getContasById(1L);
+
+//         assertThat(contaEncontrada)
+//                 .isNotNull();
+//          assertThat(contaEncontrada.getNumeroConta())
+//                  .isGreaterThan(0);
+//          assertThat(contaEncontrada.getTipoConta())
+//                  .isEqualTo(GenerateConta.contaValida().getTipoConta())
+//                  .isNotEmpty();
+//     }
 
 
 
