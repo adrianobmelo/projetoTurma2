@@ -1,4 +1,8 @@
 package br.gama.itau.projetogrupo2.model;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6aa6d8dac9502ec47c1bf000c4dbbd9a3dfe1541
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
