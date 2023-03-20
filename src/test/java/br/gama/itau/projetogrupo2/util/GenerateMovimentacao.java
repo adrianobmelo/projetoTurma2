@@ -19,7 +19,7 @@ public class GenerateMovimentacao {
                 .descricao("Saque")
                 .valor(200)
                 .tipoOperacao(1)
-                // .contas(contas)
+                //.contas(contas)
                 .build();
     }
 
@@ -40,6 +40,7 @@ public class GenerateMovimentacao {
             .descricao("Saque")
             .valor(200)
             .tipoOperacao(1)
+            .conta(Conta.builder().numeroConta(1).build())
             .build();
     }
 

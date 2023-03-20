@@ -4,8 +4,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import java.util.ArrayList;
-import java.util.List;
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +14,12 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.model.Conta;
+import br.gama.itau.projetogrupo2.repository.ClienteRepo;
 import br.gama.itau.projetogrupo2.repository.ContaRepo;
+import br.gama.itau.projetogrupo2.util.GenerateCliente;
 import br.gama.itau.projetogrupo2.util.GenerateConta;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -32,6 +34,9 @@ public class ContaControllerITTest {
 
     @Autowired
     private ContaRepo contaRepo;
+
+    @Autowired
+    private ClienteRepo clienteRepo;
 
     @BeforeEach
     public void setup() {
@@ -51,7 +56,7 @@ public class ContaControllerITTest {
     }
 
     @Test
-    public void getByIdConta_returnConta_whenIdExist() throws Exception {
+    public void getByNumeroConta_returnConta_whenIdExist() throws Exception {
         Conta novaConta = GenerateConta.novaContaToSave();
 
         Conta contaCriada = contaRepo.save(novaConta);
@@ -65,21 +70,23 @@ public class ContaControllerITTest {
                 .andExpect(jsonPath("$.tipoConta", CoreMatchers.is(contaCriada.getTipoConta())));
     }
 
-    // @Test
-    // public void getAll_returnListContas_whenSuccess() throws Exception {
-    //     // preparação
-    //     List<Conta> lista = new ArrayList<>();
-    //     lista.add(GenerateConta.novaContaToSave());
-    
+    @Test
+    public void updateConta_returnUpdatedConta_whenNumeroContaExist() throws Exception {
+        Cliente novoCliente = GenerateCliente.novoClienteToSave();
+        Cliente clienteCriado = clienteRepo.save(novoCliente);
 
-    //     contaRepo.saveAll(lista);
+        Conta novaConta = GenerateConta.novaContaToSave(clienteCriado.getIdCliente());
 
-    //     // ação
-    //     ResultActions resposta = mockMvc.perform(get("/contas").contentType(MediaType.APPLICATION_JSON));
+        Conta contaCriada = contaRepo.save(novaConta);
 
-    //     // verificações
-    //     resposta.andExpect(status().isOk()) 
-    //             .andExpect(jsonPath("$.size()", CoreMatchers.is(lista.size())))
-    //             .andExpect(jsonPath("$[0].numeroConta", CoreMatchers.is(GenerateConta.contaValida().getNumeroConta())));
-    // }
+        // ação
+        ResultActions resposta = mockMvc.perform(get("/contas/{id}", contaCriada.getNumeroConta())
+                .contentType(MediaType.APPLICATION_JSON));
+
+        // verificar os resultados
+        resposta.andExpect(status().isOk())
+                .andExpect(jsonPath("$.tipoConta", CoreMatchers.is(contaCriada.getTipoConta())));
+    }
+            //inserir cliente, inserir conta novacontatosave com (idcliente)
+
  }
