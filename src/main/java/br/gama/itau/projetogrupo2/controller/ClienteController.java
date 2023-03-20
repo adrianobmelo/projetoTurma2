@@ -51,5 +51,5 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteInserido);
     }
 
-   // testando o merge do projeto
+   
 }
