@@ -32,14 +32,4 @@ public class MovimentacaoController {
 
         return ResponseEntity.status(HttpStatus.CREATED).body(movimentacaoInserida);
     }
-
-    // // alterar o saldo da conta
-    // @PutMapping("/movimentacoes/{id}")
-    // public ResponseEntity<MovimentacaoService> updateConta(@PathVariable long id, @RequestBody Movimentacao movimentacao) {
-    //     Movimentacao movimentacaoInserida = service.updateConta(id, movimentacao);
-    //     if(movimentacaoInserida == null) {
-    //         return ResponseEntity.badRequest().build();
-    //     }
-    //     return ResponseEntity.ok(movimentacaoInserida);
-    // }
 }
