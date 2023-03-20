@@ -7,6 +7,7 @@ import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.model.Conta;
 
 public class GenerateCliente {
+    
     public static Cliente clienteId1() {
         List<Conta> contas = new ArrayList<>();
         contas.add(GenerateConta.contaId1());
