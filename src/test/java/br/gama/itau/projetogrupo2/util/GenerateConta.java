@@ -15,7 +15,7 @@ public class GenerateConta {
 
     public static Conta novaContaToSave() {
         return Conta.builder()            
-                .numeroConta(2)
+                // .numeroConta(1)
                 .agencia(4585)
                 .tipoConta(1)
                 .saldo(200)
@@ -24,7 +24,7 @@ public class GenerateConta {
 
     public static Conta contaValida() {
         return Conta.builder()
-                .numeroConta(2)
+                .numeroConta(1)
                 .agencia(4585)
                 .tipoConta(1)
                 .saldo(200)
