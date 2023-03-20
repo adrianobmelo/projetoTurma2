@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Cliente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">projetogrupo2</a> &gt; <a href="index.source.html" class="el_package">br.gama.itau.projetogrupo2.model</a> &gt; <span class="el_source">Cliente.java</span></div><h1>Cliente.java</h1><pre class="source lang-java linenums">package br.gama.itau.projetogrupo2.model;
+
+import java.util.List;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+@Entity
+@Getter
+<span class="nc" id="L20">@Setter</span>
+<span class="pc" id="L21">@Builder</span>
+public class Cliente {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+<span class="fc" id="L25">    private long idCliente;</span>
+
+    @Column(length=100)
+<span class="fc" id="L28">    private String nomeCliente;</span>
+
+    @Column(length=20, nullable = false, unique=true)
+<span class="fc" id="L31">    private String cpfCliente;</span>
+
+    @Column(length = 20, nullable= false, unique=true)
+<span class="fc" id="L34">    private String telefoneCliente;</span>
+
+    @OneToMany(mappedBy = &quot;cliente&quot;)
+    @JsonIgnoreProperties(&quot;cliente&quot;)
+<span class="fc" id="L38">    private List&lt;Conta&gt; contas;</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

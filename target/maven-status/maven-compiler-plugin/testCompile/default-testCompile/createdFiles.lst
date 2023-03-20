@@ -1,0 +1,6 @@
+br/gama/itau/projetogrupo2/controller/ClienteControllerTest.class
+br/gama/itau/projetogrupo2/util/GenerateConta.class
+br/gama/itau/projetogrupo2/util/GenerateCliente.class
+br/gama/itau/projetogrupo2/service/ClienteServiceTest.class
+br/gama/itau/projetogrupo2/Projetogrupo2ApplicationTests.class
+br/gama/itau/projetogrupo2/repository/ClienteRepoTest.class
