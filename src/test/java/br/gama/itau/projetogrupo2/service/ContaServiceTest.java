@@ -80,7 +80,7 @@ public class ContaServiceTest {
     }
 
     @Test
-    public void updateConta_returnUpdatedConta_whenContaValido() {
+    public void updateConta_returnUpdatedConta_whenContaValida() {
 
         BDDMockito.when(repo.findById(ArgumentMatchers.any(Long.class)))
                 .thenReturn(Optional.of(GenerateConta.contaValida()));
