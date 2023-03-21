@@ -1,7 +1,6 @@
 package br.gama.itau.projetogrupo2.model;
 
 import java.time.LocalDate;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -23,23 +22,24 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Movimentacao {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "conta", nullable = false)
     private int numSeq;
-    
     
     private LocalDate dataOperacao;
 
     @Column(nullable = false)
     private double valor;
 
+    private int tipoOperacao;
+        // 1 - crédito
+        // 2 - débito
+    
     @Column(length = 255)
     private String descricao;
 
-    private int tipoOperacao;
-
-    
     @ManyToOne
     @JoinColumn(name = "numero_conta")
     @JsonIgnoreProperties("movimentacoes")

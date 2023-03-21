@@ -1,11 +1,10 @@
 package br.gama.itau.projetogrupo2.service;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
@@ -14,7 +13,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import br.gama.itau.projetogrupo2.dto.ClienteDTO;
 import br.gama.itau.projetogrupo2.dto.ContaDTO;
 import br.gama.itau.projetogrupo2.model.Cliente;
@@ -23,17 +21,12 @@ import br.gama.itau.projetogrupo2.repository.ClienteRepo;
 import br.gama.itau.projetogrupo2.util.GenerateCliente;
 import br.gama.itau.projetogrupo2.util.GenerateConta;
 
-
 @ExtendWith(MockitoExtension.class)
 public class ClienteServiceTest {
-        // testes
-        // Restaurar arquivos 123
-    // esse obj receberá um Mock da sua dependência
-    // esse é o obj da classe a ser testada
+
     @InjectMocks
     private ClienteService service;
 
-    // É a dependência a ser injetada
     @Mock
     private ClienteRepo repo;
 

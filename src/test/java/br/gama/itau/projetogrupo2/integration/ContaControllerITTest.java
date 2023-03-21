@@ -14,7 +14,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.model.Conta;
 import br.gama.itau.projetogrupo2.repository.ClienteRepo;
@@ -45,48 +44,52 @@ public class ContaControllerITTest {
 
     @Test
     public void newConta_returnContaInserida_whenDadosContaValida() throws Exception {
-       Conta novaConta = GenerateConta.novaContaToSave();
+        // preparação
+        Conta novaConta = GenerateConta.novaContaToSave();
 
+        // ação
         ResultActions resposta = mockMvc.perform(post("/contas")
                         .content(objectMapper.writeValueAsString(novaConta))
                         .contentType(MediaType.APPLICATION_JSON));
 
+        // verificar
         resposta.andExpect(status().isCreated())
                 .andExpect(jsonPath("$.tipoConta", CoreMatchers.is(novaConta.getTipoConta())));
     }
 
     @Test
     public void getByNumeroConta_returnConta_whenIdExist() throws Exception {
+        // preparação
         Conta novaConta = GenerateConta.novaContaToSave();
-
         Conta contaCriada = contaRepo.save(novaConta);
 
         // ação
         ResultActions resposta = mockMvc.perform(get("/contas/{id}", contaCriada.getNumeroConta())
                 .contentType(MediaType.APPLICATION_JSON));
 
-        // verificar os resultados
+        // verificar
         resposta.andExpect(status().isOk())
                 .andExpect(jsonPath("$.tipoConta", CoreMatchers.is(contaCriada.getTipoConta())));
     }
 
     @Test
     public void updateConta_returnUpdatedConta_whenNumeroContaExist() throws Exception {
+        // preparação
         Cliente novoCliente = GenerateCliente.novoClienteToSave();
         Cliente clienteCriado = clienteRepo.save(novoCliente);
 
         Conta novaConta = GenerateConta.novaContaToSave(clienteCriado.getIdCliente());
-
         Conta contaCriada = contaRepo.save(novaConta);
 
         // ação
         ResultActions resposta = mockMvc.perform(get("/contas/{id}", contaCriada.getNumeroConta())
                 .contentType(MediaType.APPLICATION_JSON));
 
-        // verificar os resultados
+        // verificar
         resposta.andExpect(status().isOk())
                 .andExpect(jsonPath("$.tipoConta", CoreMatchers.is(contaCriada.getTipoConta())));
     }
-            //inserir cliente, inserir conta novacontatosave com (idcliente)
+
+        //inserir cliente, inserir conta novacontatosave com (idcliente)
 
  }

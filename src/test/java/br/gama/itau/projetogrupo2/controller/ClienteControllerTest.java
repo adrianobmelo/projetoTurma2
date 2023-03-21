@@ -1,13 +1,11 @@
 package br.gama.itau.projetogrupo2.controller;
-//import static org.mockito.ArgumentMatchers.anyLong;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 //import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
@@ -17,9 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
-
 //import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.gama.itau.projetogrupo2.dto.ClienteDTO;
 import br.gama.itau.projetogrupo2.service.ClienteService;
 import br.gama.itau.projetogrupo2.util.GenerateCliente;
@@ -30,10 +26,9 @@ public class ClienteControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
     //@Autowired
     //private ObjectMapper objectMapper;
-  
-    
 
     @MockBean
     private ClienteService service;

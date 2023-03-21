@@ -1,38 +1,23 @@
 package br.gama.itau.projetogrupo2.dto;
 
-// import br.gama.itau.projetogrupo2.model.Conta;
-// import br.gama.itau.projetogrupo2.model.Movimentacao;
+import br.gama.itau.projetogrupo2.model.Movimentacao;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Getter
+@Setter
+@NoArgsConstructor
 public class MovimentacaoDTO {
-    // private double saldo;
-    // private double valor;
-    // private double alteracao;
-    // private int opcao;
-
+    private int numSeq;
+    private double valor;
+    private String descrição;
+    private int tipoOperacao;
     
-    // public MovimentacaoDTO(Conta conta) {
-    //     this.saldo = conta.getSaldo();
-    // } 
-
-    // public MovimentacaoDTO(Movimentacao movimentacao) {
-    //     this.valor = movimentacao.getValor();
-    // }
-
-    // public void setAlteracao(double alteracao) {
-       
-    //     switch (opcao) {
-    //         case 1:
-    //             alteracao = saldo + valor;
-    //             break;
-    //         case 2:
-    //             alteracao = saldo - valor;
-    //             break;
-        
-    //         default:
-    //             break;
-    //     }
-       
-    // }
-
-    
+    public MovimentacaoDTO(Movimentacao movimentacao) {
+        this.numSeq = movimentacao.getNumSeq();
+        this.valor = movimentacao.getValor();
+        this.descrição = movimentacao.getDescricao();
+        this.tipoOperacao = movimentacao.getTipoOperacao();
+    }
 }

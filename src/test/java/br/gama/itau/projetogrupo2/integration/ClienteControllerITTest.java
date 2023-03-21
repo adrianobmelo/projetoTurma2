@@ -4,10 +4,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +16,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.repository.ClienteRepo;
 import br.gama.itau.projetogrupo2.util.GenerateCliente;
@@ -44,27 +41,29 @@ public class ClienteControllerITTest {
 
     @Test
     public void newCliente_returnClienteInserido_whenDadosClienteValido() throws Exception {
+        // preparação
         Cliente novoCliente = GenerateCliente.novoClienteToSave();
 
+        // ação
         ResultActions resposta = mockMvc.perform(post("/clientes")
                         .content(objectMapper.writeValueAsString(novoCliente))
                         .contentType(MediaType.APPLICATION_JSON));
-
+        // verificar
         resposta.andExpect(status().isCreated())
                 .andExpect(jsonPath("$.cpfCliente", CoreMatchers.is(novoCliente.getCpfCliente())));
     }
 
     @Test
     public void getByIdCliente_returnCliente_whenIdExist() throws Exception {
+        // preparação
         Cliente novoCliente = GenerateCliente.novoClienteToSave();
-
         Cliente clienteCriado = clienteRepo.save(novoCliente);
 
         // ação
         ResultActions resposta = mockMvc.perform(get("/clientes/{id}", clienteCriado.getIdCliente())
                 .contentType(MediaType.APPLICATION_JSON));
 
-        // verificar os resultados
+        // verificar 
         resposta.andExpect(status().isOk())
                 .andExpect(jsonPath("$.cpfCliente", CoreMatchers.is(clienteCriado.getCpfCliente())));
     }
@@ -74,14 +73,12 @@ public class ClienteControllerITTest {
         // preparação
         List<Cliente> lista = new ArrayList<>();
         lista.add(GenerateCliente.novoClienteToSave());
-    
-
         clienteRepo.saveAll(lista);
 
         // ação
         ResultActions resposta = mockMvc.perform(get("/clientes").contentType(MediaType.APPLICATION_JSON));
 
-        // verificações
+        // verificar
         resposta.andExpect(status().isOk()) 
                 .andExpect(jsonPath("$.size()", CoreMatchers.is(lista.size())))
                 .andExpect(jsonPath("$[0].cpfCliente", CoreMatchers.is(GenerateCliente.clienteValido().getCpfCliente())));

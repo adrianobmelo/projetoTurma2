@@ -1,4 +1,5 @@
 package br.gama.itau.projetogrupo2.dto;
+
 import br.gama.itau.projetogrupo2.model.Conta;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,7 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class ContaDTO {   
     
         private long numeroConta;

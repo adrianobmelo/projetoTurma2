@@ -1,11 +1,10 @@
 package br.gama.itau.projetogrupo2.service;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.verify;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
@@ -21,12 +20,10 @@ import br.gama.itau.projetogrupo2.util.GenerateConta;
 
 @ExtendWith(MockitoExtension.class)
 public class ContaServiceTest {
-    // esse obj receberá um Mock da sua dependência
-    // esse é o obj da classe a ser testada
+
     @InjectMocks
     private ContaService service;
 
-    // É a dependência a ser injetada
     @Mock
     private ContaRepo repo;
 
@@ -70,7 +67,7 @@ public class ContaServiceTest {
         // ação
         Conta contaCriada = service.newConta(novaConta);
 
-        // verificação
+        // verificar
         assertThat(contaCriada).isNotNull();
         assertThat(contaCriada.getNumeroConta()).isPositive();
         assertThat(contaCriada.getTipoConta()).isEqualTo(novaConta.getTipoConta());
@@ -81,7 +78,7 @@ public class ContaServiceTest {
 
     @Test
     public void updateConta_returnUpdatedConta_whenContaValida() {
-
+        // preparação
         BDDMockito.when(repo.findById(ArgumentMatchers.any(Long.class)))
                 .thenReturn(Optional.of(GenerateConta.contaValida()));
 
@@ -93,13 +90,11 @@ public class ContaServiceTest {
         // ação
         Conta contaAtualizada = service.updateConta(1L, contaParaAtualizar);
 
-        // verificação
+        // verificar
         assertThat(contaAtualizada).isNotNull();
         assertThat(contaAtualizada.getNumeroConta()).isEqualTo(1L);
         assertThat(contaAtualizada.getTipoConta()).isEqualTo(contaParaAtualizar.getTipoConta());
 
         verify(repo, Mockito.times(1)).save(contaParaAtualizar);
     }
-
-   
 }

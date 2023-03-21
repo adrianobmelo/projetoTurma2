@@ -1,27 +1,25 @@
 package br.gama.itau.projetogrupo2.integration;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import org.hamcrest.CoreMatchers;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+// import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+// import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+// import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.ResultActions;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-
-import br.gama.itau.projetogrupo2.model.Cliente;
-import br.gama.itau.projetogrupo2.model.Conta;
-import br.gama.itau.projetogrupo2.model.Movimentacao;
-import br.gama.itau.projetogrupo2.repository.ClienteRepo;
+// import org.springframework.http.MediaType;
+//import org.springframework.test.web.servlet.MockMvc;
+//import org.springframework.test.web.servlet.ResultActions;
+//import com.fasterxml.jackson.databind.ObjectMapper;
+// import br.gama.itau.projetogrupo2.model.Cliente;
+// import br.gama.itau.projetogrupo2.model.Conta;
+// import br.gama.itau.projetogrupo2.model.Movimentacao;
+//import br.gama.itau.projetogrupo2.repository.ClienteRepo;
 import br.gama.itau.projetogrupo2.repository.MovimentacaoRepo;
-import br.gama.itau.projetogrupo2.util.GenerateCliente;
+//import br.gama.itau.projetogrupo2.util.GenerateCliente;
 import br.gama.itau.projetogrupo2.util.GenerateConta;
 import br.gama.itau.projetogrupo2.util.GenerateMovimentacao;
 
@@ -30,17 +28,17 @@ import br.gama.itau.projetogrupo2.util.GenerateMovimentacao;
 @AutoConfigureMockMvc
 public class MovimentacaoControllerITTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+    // @Autowired
+    // private MockMvc mockMvc;
 
-    @Autowired
-    private ObjectMapper objectMapper;
+    // @Autowired
+    // private ObjectMapper objectMapper;
 
     @Autowired
     private MovimentacaoRepo movimentacaoRepo;
 
-    @Autowired
-    private ClienteRepo clienteRepo;
+    // @Autowired
+    // private ClienteRepo clienteRepo;
 
     @BeforeEach
     public void setup() {
@@ -64,4 +62,20 @@ public class MovimentacaoControllerITTest {
     //     resposta.andExpect(status().isCreated())
     //             .andExpect(jsonPath("$.numSeq", CoreMatchers.is(novaMovimentacao.getNumSeq())));
     // }
+
+    @Test
+    public void newMovimentacao_returnAdicaodeValorEmSaldo_whenDadosMovimentacaoValida() throws Exception {
+      
+        double resposta = GenerateConta.novaContaToSave(1).getSaldo() + GenerateMovimentacao.novaMovimentacaoToSave().getValor();
+
+        assertEquals(400, resposta);
+    }
+
+    @Test
+    public void newMovimentacao_returnSubtracaoSaldoDeValor_whenDadosMovimentacaoValida() throws Exception {
+      
+        double resposta = GenerateConta.novaContaToSave(1).getSaldo() - GenerateMovimentacao.novaMovimentacaoToSave().getValor();
+
+        assertEquals(0, resposta);
+    }
 }

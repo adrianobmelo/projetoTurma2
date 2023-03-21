@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
-
 import br.gama.itau.projetogrupo2.dto.ClienteDTO;
 import br.gama.itau.projetogrupo2.dto.ContaDTO;
 import br.gama.itau.projetogrupo2.exception.NotFoundException;
@@ -16,16 +15,20 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class ClienteService {
-    // mostrar todos
+  
     private final ClienteRepo repo;
+    
+    // cadastrarCliente()
+    public Cliente newCliente(Cliente novoCliente) {
+        if(novoCliente.getIdCliente() > 0) {
+        return null;
+        }
+    Cliente clienteInserido = repo.save(novoCliente);
+    return clienteInserido;
+}
 
-    //public List<Cliente> getAll() {
-        //return (List<Cliente>) repo.findAll();
-    //}
-
+    // recuperarTodos()
     public List<ClienteDTO> getAll() {
-        // o método finAll retorna um Iterable, e nós precisamos de um List
-        // por isso fazemos um Casting, transformando para o tipo que precisamos
         List<Cliente> lista = (List<Cliente>) repo.findAll();
 
         List<ClienteDTO> listaDTO = new ArrayList<>();
@@ -37,7 +40,7 @@ public class ClienteService {
         return listaDTO;
     }
 
-    // mostrar por id
+    // recuperarPeloID()
     public Cliente getById(long id) {
         Optional<Cliente> clienteOptional = repo.findById(id);
 
@@ -49,6 +52,7 @@ public class ClienteService {
         return clienteEncontrado;
     }
 
+    // ContaService > recuperarContasPeloCliente()
     public List<ContaDTO> getContasById(long id) {
         Optional<Cliente> clienteOptional = repo.findById(id);
 
@@ -65,15 +69,4 @@ public class ClienteService {
         }
         return listaContasDTO;
     }
-
-    // add cliente
-    public Cliente newCliente(Cliente novoCliente) {
-        if(novoCliente.getIdCliente() > 0) {
-            return null;
-        }
-        Cliente clienteInserido = repo.save(novoCliente);
-        return clienteInserido;
-    }
-
-    
 }
