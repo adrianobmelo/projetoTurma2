@@ -4,16 +4,22 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.hamcrest.CoreMatchers;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.model.Conta;
 import br.gama.itau.projetogrupo2.repository.ClienteRepo;
@@ -23,6 +29,7 @@ import br.gama.itau.projetogrupo2.util.GenerateConta;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
+@TestInstance(Lifecycle.PER_CLASS)
 public class ContaControllerITTest {
     
     @Autowired
@@ -40,7 +47,16 @@ public class ContaControllerITTest {
     @BeforeEach
     public void setup() {
         contaRepo.deleteAll();
+        clienteRepo.deleteAll();
     }
+
+    @AfterAll
+    public void tearDown() {
+        contaRepo.deleteAll();
+        clienteRepo.deleteAll();
+    }
+
+
 
     @Test
     public void newConta_returnContaInserida_whenDadosContaValida() throws Exception {

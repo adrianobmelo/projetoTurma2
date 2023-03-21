@@ -23,7 +23,7 @@ public class GenerateCliente {
     
     public static Cliente novoClienteToSave() {
         return Cliente.builder()
-                .idCliente(1)            
+                // .idCliente(1)            
                 .nomeCliente("Afranio")
                 .cpfCliente("00569874521")
                 .telefoneCliente("8436521478")
