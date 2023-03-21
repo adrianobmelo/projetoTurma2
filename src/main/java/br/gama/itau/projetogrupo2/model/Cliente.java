@@ -1,7 +1,6 @@
 package br.gama.itau.projetogrupo2.model;
 
 import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,9 +12,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 
 @Entity
 @Getter
@@ -24,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Cliente {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idCliente;

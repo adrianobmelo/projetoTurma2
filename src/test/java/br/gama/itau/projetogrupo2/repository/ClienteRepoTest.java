@@ -10,8 +10,6 @@ import br.gama.itau.projetogrupo2.util.GenerateCliente;
 @DataJpaTest
 public class ClienteRepoTest {
     
-
-
     @Autowired
     private ClienteRepo repo;
 
@@ -25,6 +23,4 @@ public class ClienteRepoTest {
         assertThat(clienteCriado.getNomeCliente()).isEqualTo(novoCliente.getNomeCliente());
     }
     
-
-
 }

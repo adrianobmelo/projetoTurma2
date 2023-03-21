@@ -1,9 +1,7 @@
 package br.gama.itau.projetogrupo2.model;
 
 import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,16 +23,19 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Conta {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "conta")
     private long numeroConta;
     
-    
     private int agencia;
 
     @Column(nullable = false)
     private int tipoConta;
+        // 1 - conta pessoa física
+        // 2 - conta estudantil
+        // 3 - conta salário
 
     private double saldo;
 

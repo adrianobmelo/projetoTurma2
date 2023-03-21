@@ -1,9 +1,6 @@
 package br.gama.itau.projetogrupo2.service;
 
-//import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import br.gama.itau.projetogrupo2.model.Conta;
 import br.gama.itau.projetogrupo2.model.Movimentacao;
 import br.gama.itau.projetogrupo2.repository.MovimentacaoRepo;
@@ -12,9 +9,12 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class MovimentacaoService {
+    
     private final MovimentacaoRepo repo;
+    
     private final ContaService contaService;
 
+    // cadastrarMovimentacao()
     public Movimentacao newMovimentacao(Movimentacao novaMovimentacao) {
         if(novaMovimentacao.getNumSeq() > 0) {
             return null;
@@ -36,5 +36,10 @@ public class MovimentacaoService {
         Movimentacao movimentacaoInserida = repo.save(novaMovimentacao);
 
         return movimentacaoInserida;
+    }
+
+    // recuperarMovimentacoesPelaConta()
+    public Movimentacao getByConta(long id) {
+        return repo.findByConta(id);
     }
 }

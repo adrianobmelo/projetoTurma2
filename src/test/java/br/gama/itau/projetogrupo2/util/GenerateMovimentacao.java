@@ -1,6 +1,6 @@
 package br.gama.itau.projetogrupo2.util;
 
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.List;
 import br.gama.itau.projetogrupo2.model.Conta;
 import br.gama.itau.projetogrupo2.model.Movimentacao;
@@ -15,7 +15,7 @@ public class GenerateMovimentacao {
 
         return Movimentacao.builder()
                 .numSeq(1)
-                .dataOperacao(LocalDate.now())
+                //.dataOperacao(LocalDate.now())
                 .descricao("Saque")
                 .valor(200)
                 .tipoOperacao(1)
@@ -26,7 +26,7 @@ public class GenerateMovimentacao {
     public static Movimentacao movimentacaoValida() {
         return Movimentacao.builder()
             .numSeq(1)
-            .dataOperacao(LocalDate.now())
+            //.dataOperacao(LocalDate.now())
             .descricao("Saque")
             .valor(200)
             .tipoOperacao(1)
@@ -36,13 +36,11 @@ public class GenerateMovimentacao {
     public static Movimentacao novaMovimentacaoToSave() {
         return Movimentacao.builder()
             // .numSeq(1)
-            .dataOperacao(LocalDate.now())
+            //.dataOperacao(LocalDate.now())
             .descricao("Saque")
             .valor(200)
             .tipoOperacao(1)
             .conta(Conta.builder().numeroConta(1).build())
             .build();
-    }
-
-    
+    }  
 }

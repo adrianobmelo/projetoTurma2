@@ -4,10 +4,10 @@ import br.gama.itau.projetogrupo2.model.Cliente;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 @Getter
 @Setter
 @NoArgsConstructor
-
 public class ClienteDTO {
 
     private long idCliente;

@@ -2,7 +2,6 @@ package br.gama.itau.projetogrupo2.util;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import br.gama.itau.projetogrupo2.model.Cliente;
 import br.gama.itau.projetogrupo2.model.Conta;
 
@@ -23,7 +22,8 @@ public class GenerateCliente {
 
     
     public static Cliente novoClienteToSave() {
-        return Cliente.builder()            
+        return Cliente.builder()
+                .idCliente(1)            
                 .nomeCliente("Afranio")
                 .cpfCliente("00569874521")
                 .telefoneCliente("8436521478")
