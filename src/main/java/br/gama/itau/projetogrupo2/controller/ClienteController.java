@@ -27,13 +27,17 @@ public class ClienteController {
         return ResponseEntity.ok(service.getAll());
     }
 
-    // /clientes/{id} (GET) - recuperarPeloId
-    @GetMapping("/{id}")
-    public ResponseEntity<Cliente> getById(@PathVariable Long id) {
+   // /clientes/{id} (GET) - recuperarPeloId
+   @GetMapping("/{id}")
+   public ResponseEntity<Cliente> getById(@PathVariable Long id) {
 
-        Cliente cliente = service.getById(id);
-        return ResponseEntity.ok(cliente);
-    }
+       Cliente cliente = service.getById(id);
+       if(cliente == null) {
+           return ResponseEntity.badRequest().build();
+       }
+       return ResponseEntity.ok(cliente);
+   }
+
 
     // /clientes (POST) - cadastrarCliente
     @PostMapping

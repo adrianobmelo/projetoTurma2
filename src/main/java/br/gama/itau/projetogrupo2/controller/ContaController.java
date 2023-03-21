@@ -31,8 +31,11 @@ public class ContaController {
     public ResponseEntity<Conta> getNumeroConta(@PathVariable Long id) {
  
         Conta conta =service.getNumeroConta(id);
-            return ResponseEntity.ok(conta);
-     }
+        if(conta == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(conta);
+    }
 
     // /contas/cliente/{id} (GET) - recuperarContasPeloCliente
     @GetMapping("/id/{id}")
