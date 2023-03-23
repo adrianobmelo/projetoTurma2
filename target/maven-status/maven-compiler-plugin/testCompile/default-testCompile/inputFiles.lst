@@ -1,0 +1,12 @@
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/integration/MovimentacaoControllerITTest.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/integration/ClienteControllerITTest.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/repository/ClienteRepoTest.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/service/ContaServiceTest.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/controller/ClienteControllerTest.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/Projetogrupo2ApplicationTests.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/util/GenerateCliente.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/service/ClienteServiceTest.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/integration/ContaControllerITTest.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/util/GenerateMovimentacao.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/util/GenerateConta.java
+/home/lmbernardo/projetoTurma2/src/test/java/br/gama/itau/projetogrupo2/service/MovimentacaoServiceTest.java

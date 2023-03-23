@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: br.gama.itau.projetogrupo2.integration.ContaControllerITTest
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.464 s - in br.gama.itau.projetogrupo2.integration.ContaControllerITTest

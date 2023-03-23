@@ -1,0 +1,12 @@
+br/gama/itau/projetogrupo2/util/GenerateConta.class
+br/gama/itau/projetogrupo2/integration/ClienteControllerITTest.class
+br/gama/itau/projetogrupo2/service/MovimentacaoServiceTest.class
+br/gama/itau/projetogrupo2/integration/ContaControllerITTest.class
+br/gama/itau/projetogrupo2/controller/ClienteControllerTest.class
+br/gama/itau/projetogrupo2/util/GenerateMovimentacao.class
+br/gama/itau/projetogrupo2/util/GenerateCliente.class
+br/gama/itau/projetogrupo2/integration/MovimentacaoControllerITTest.class
+br/gama/itau/projetogrupo2/service/ContaServiceTest.class
+br/gama/itau/projetogrupo2/service/ClienteServiceTest.class
+br/gama/itau/projetogrupo2/Projetogrupo2ApplicationTests.class
+br/gama/itau/projetogrupo2/repository/ClienteRepoTest.class

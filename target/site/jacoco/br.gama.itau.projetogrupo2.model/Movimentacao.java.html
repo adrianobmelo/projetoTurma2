@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Movimentacao.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">projetogrupo2</a> &gt; <a href="index.source.html" class="el_package">br.gama.itau.projetogrupo2.model</a> &gt; <span class="el_source">Movimentacao.java</span></div><h1>Movimentacao.java</h1><pre class="source lang-java linenums">package br.gama.itau.projetogrupo2.model;
+
+import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Entity
+@Getter
+<span class="nc" id="L20">@Setter</span>
+<span class="pc" id="L21">@Builder</span>
+<span class="fc" id="L22">@AllArgsConstructor</span>
+<span class="fc" id="L23">@NoArgsConstructor</span>
+public class Movimentacao {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;conta&quot;, nullable = false)
+<span class="fc" id="L29">    private int numSeq;</span>
+    
+<span class="nc" id="L31">    private LocalDate dataOperacao;</span>
+
+    @Column(nullable = false)
+<span class="fc" id="L34">    private double valor;</span>
+
+<span class="fc" id="L36">    private int tipoOperacao;</span>
+        // 1 - crédito
+        // 2 - débito
+    
+    @Column(length = 255)
+<span class="nc" id="L41">    private String descricao;</span>
+
+    @ManyToOne
+    @JoinColumn(name = &quot;numero_conta&quot;)
+    @JsonIgnoreProperties(&quot;movimentacoes&quot;)
+<span class="fc" id="L46">    private Conta conta;</span>
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

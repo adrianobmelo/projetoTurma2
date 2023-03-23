@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ContaService.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">projetogrupo2</a> &gt; <a href="index.source.html" class="el_package">br.gama.itau.projetogrupo2.service</a> &gt; <span class="el_source">ContaService.java</span></div><h1>ContaService.java</h1><pre class="source lang-java linenums">package br.gama.itau.projetogrupo2.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import org.springframework.stereotype.Service;
+import br.gama.itau.projetogrupo2.dto.MovimentacaoDTO;
+import br.gama.itau.projetogrupo2.exception.NotFoundException;
+import br.gama.itau.projetogrupo2.model.Conta;
+import br.gama.itau.projetogrupo2.model.Movimentacao;
+import br.gama.itau.projetogrupo2.repository.ContaRepo;
+import lombok.RequiredArgsConstructor;
+
+@Service
+<span class="fc" id="L15">@RequiredArgsConstructor</span>
+public class ContaService {
+    
+    private final ContaRepo repo;
+
+    // adicionarConta()
+    public Conta newConta(Conta novaConta) {
+<span class="pc bpc" id="L22" title="1 of 2 branches missed.">        if(novaConta.getNumeroConta() &gt; 0) {</span>
+<span class="nc" id="L23">            return null;</span>
+        }
+<span class="fc" id="L25">        Conta contaInserida = repo.save(novaConta);</span>
+<span class="fc" id="L26">        return contaInserida;</span>
+    }
+
+    // recuperarPeloNumero()
+    public Conta getNumeroConta(long conta) {
+<span class="fc" id="L31">        Optional&lt;Conta&gt; contaOptional = repo.findById(conta);</span>
+
+<span class="pc bpc" id="L33" title="1 of 2 branches missed.">        if (contaOptional.isEmpty()) {</span>
+<span class="nc" id="L34">            throw new NotFoundException(&quot;Conta não encontrada&quot;);</span>
+        }
+
+<span class="fc" id="L37">        Conta contaEncontrada = contaOptional.get();</span>
+<span class="fc" id="L38">        return contaEncontrada;</span>
+    }
+
+    // alterarDados()
+    public Conta updateConta(long id, Conta conta){
+<span class="fc" id="L43">        Optional&lt;Conta&gt;contaOptional = repo.findById(id);</span>
+
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">        if(contaOptional.isEmpty()) {</span>
+<span class="nc" id="L46">            return null;</span>
+        }
+<span class="fc" id="L48">        conta.setNumeroConta(id);</span>
+<span class="fc" id="L49">        Conta contaAtualizada = repo.save(conta);</span>
+<span class="fc" id="L50">        return contaAtualizada;</span>
+    }
+    
+    // recuperarContasPeloCliente()
+    public Conta getByCLiente(long id) {
+<span class="nc" id="L55">        return repo.findByCliente(id);</span>
+    }
+
+    // MovimentacaoService &gt; recuperarTodas()
+    public List&lt;Conta&gt; getAll() {
+<span class="fc" id="L60">        return (List&lt;Conta&gt;) repo.findAll();</span>
+    }
+
+    // MovimentacaoService &gt; recuperarMovimentacoesPelaConta()
+    public List&lt;MovimentacaoDTO&gt; getMovimentacoesByConta(long id) {
+<span class="nc" id="L65">        Optional&lt;Conta&gt; contaOptional = repo.findById(id);</span>
+
+<span class="nc bnc" id="L67" title="All 2 branches missed.">        if (contaOptional.isEmpty()) {</span>
+<span class="nc" id="L68">            throw new NotFoundException(&quot;Conta não encontrada&quot;);</span>
+        }
+
+<span class="nc" id="L71">        Conta contaEncontrada = contaOptional.get();</span>
+<span class="nc" id="L72">        List&lt;Movimentacao&gt; listaMovimentacoes = contaEncontrada.getMovimentacoes();</span>
+<span class="nc" id="L73">        List&lt;MovimentacaoDTO&gt; listaMovimentacoesDTO = new ArrayList&lt;&gt;();</span>
+
+<span class="nc bnc" id="L75" title="All 2 branches missed.">        for (Movimentacao movimentacao : listaMovimentacoes) {</span>
+<span class="nc" id="L76">            listaMovimentacoesDTO.add(new MovimentacaoDTO(movimentacao));</span>
+<span class="nc" id="L77">        }</span>
+<span class="nc" id="L78">        return listaMovimentacoesDTO;</span>
+    }
+    
+
+    
+
+    
+
+    
+}
+
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>
